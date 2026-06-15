@@ -1,90 +1,50 @@
-
+package shapes;
 
 import java.util.Scanner;
 
-public class ShapeMain {
-
-    public static void main(String[] args) {
-
+public class ShapeMain{
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
-        int numberOfShapes = sc.nextInt();
-        sc.nextLine();
+        int n = sc.nextInt();
+        Shape[] shapes = new Shape[n];
 
-        Shape[] shapes = new Shape[numberOfShapes];
-
-        // Input
-        for (int i = 0; i < numberOfShapes; i++) {
-
-            String shapeType = sc.nextLine();
-
+        for(int i=0; i<n; i++){
+            String type = sc.next();
             String color = sc.next();
             boolean filled = sc.nextBoolean();
 
-            // Rectangle
-            if (shapeType.equalsIgnoreCase("RECTANGLE")) {
-
+            if(type.equals("RECTANGLE")){
                 double width = sc.nextDouble();
                 double length = sc.nextDouble();
-                sc.nextLine();
-
-                shapes[i] = new Rectangle(
-                        color,
-                        filled,
-                        width,
-                        length
-                );
+                shapes[i] = new Rectangle(color,filled, width, length);
             }
-
-            // Circle
-            else if (shapeType.equalsIgnoreCase("CIRCLE")) {
-
+            else if(type.equals("CIRCLE")){
                 double radius = sc.nextDouble();
-                sc.nextLine();
-
-                shapes[i] = new Circle(
-                        color,
-                        filled,
-                        radius
-                );
+                shapes[i] = new Circle(color, filled, radius);
             }
         }
 
-        // Output
-        for (Shape s : shapes) {
-
+        for(Shape s:shapes){
             System.out.println(s);
             System.out.println();
         }
 
-        // Downcasting
         System.out.println("--- Downcast Check ---");
-
-        for (Shape s : shapes) {
-
-            if (s instanceof Rectangle) {
-
+        for(Shape s: shapes){
+            if(s instanceof Rectangle){
                 Rectangle r = (Rectangle) s;
-
-                System.out.println(
-                        "Rectangle width=" +
-                        r.getWidth() +
-                        " length=" +
-                        r.getLength()
-                );
-            }
-
-            else if (s instanceof Circle) {
-
+                System.out.println("Rectangle width=" + r.getWidth() + " length=" + r.getLength());
+            }else if (s instanceof Circle){
                 Circle c = (Circle) s;
-
-                System.out.println(
-                        "Circle radius=" +
-                        c.getRadius()
-                );
+                System.out.println("Circle radius=" + c.getRadius());
             }
         }
 
-        sc.close();
+        //Task 6 - Abstract Class Written answeer
+        //what error does the compiler give you write: 
+        // Shape s = new Shape("Red", true);
+
+        //Answer: Shape is abstract; cannot be instantiated
     }
 }
